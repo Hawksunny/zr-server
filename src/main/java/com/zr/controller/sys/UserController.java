@@ -48,7 +48,7 @@ public class UserController {
             //生成Token(Jwt)
             String token = UUID.randomUUID().toString();
             //把token放入redis缓存，有效时间设置为15分钟
-            redisUtils.set(token, loginUser, 15L, TimeUnit.MINUTES);
+            redisUtils.set(token, loginUser, 6L, TimeUnit.HOURS);
             Map dataMap = new HashMap();
             dataMap.put("loginUserName", loginUser.getUserName());
             dataMap.put("authUrlsList", authUrlsList);

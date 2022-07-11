@@ -1,9 +1,16 @@
 package com.zr.vo.lease;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
+
+    //haks添加字段
+    private String customerName;
+
+    // 原有字段
     private Long id;
 
     private String customerId;

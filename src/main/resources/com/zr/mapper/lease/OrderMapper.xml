@@ -29,7 +29,7 @@
     from lease_order
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from lease_order
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -220,4 +220,20 @@
       order_time = #{orderTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!-- 自定义SQL -->
+  <select id="list" resultMap="BaseResultMap">
+    select * from lease_order
+    <where>
+      <if test="id != null">
+        id = #{id}
+      </if>
+      <if test="customerId != null">
+        and customer_id = #{customerId}
+      </if>
+      <if test="customerId != null">
+        and customer_id = #{customerId}
+      </if>
+    </where>
+  </select>
 </mapper>
