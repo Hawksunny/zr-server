@@ -22,10 +22,4 @@ public interface UserService {
     void uploadImg(MultipartFile file) throws IOException;
 
     String loadImg();
-
-    void edit(User user);
-
-    void del(String userId);
-
-    void change(User user);
 }

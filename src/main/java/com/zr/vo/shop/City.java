@@ -1,8 +1,12 @@
 package com.zr.vo.shop;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.zr.vo.BaseVo;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
-public class City {
+public class City extends BaseVo {
     private Long id;
 
     private Long provinceId;
@@ -11,10 +15,12 @@ public class City {
 
     private String createId;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private String modifyId;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
     public Long getId() {
