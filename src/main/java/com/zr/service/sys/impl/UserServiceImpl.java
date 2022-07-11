@@ -3,23 +3,19 @@ package com.zr.service.sys.impl;
 import com.github.pagehelper.PageHelper;
 import com.mysql.jdbc.StringUtils;
 import com.zr.mapper.sys.UserMapper;
-import com.zr.mapper.sys.UserRoleMapper;
 import com.zr.service.sys.UserService;
 import com.zr.util.Md5Util;
 import com.zr.util.RedisUtils;
 import com.zr.util.TokenUtil;
 import com.zr.vo.sys.User;
-import com.zr.vo.sys.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,9 +33,6 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
-    @Resource
-    private UserRoleMapper userRoleMapper;
-
     /**
      * 查询用户
      * @param user
@@ -56,23 +49,11 @@ public class UserServiceImpl implements UserService {
      * 新增用户
      * @param user
      */
-    @Transactional
     @Override
     public void add(User user) {
         //对密码进行加密处理
         user.setPassword(Md5Util.EncoderByMd5(user.getPassword()));
-        user.setStatus("1");
-        user.setCreateId(tokenUtil.getUserId());
-        user.setCreateTime(new Date());
         userMapper.insertSelective(user);
-        if(user.getRoles() != null){
-            for(Long roleId : user.getRoles()){
-                UserRole userRole = new UserRole();
-                userRole.setRoleId(roleId);
-                userRole.setUserId(user.getUserId());
-                userRoleMapper.insert(userRole);
-            }
-        }
     }
 
     /**
@@ -144,61 +125,5 @@ public class UserServiceImpl implements UserService {
     public String loadImg() {
         User user = userMapper.selectByPrimaryKey(tokenUtil.getUserId());
         return loadImgByImgUrl(user.getImgUrl());
-    }
-
-    /**
-     * 编辑用户
-     * @param user
-     */
-    @Transactional
-    @Override
-    public void edit(User user) {
-        //如果存在修改密码，则加密密码
-        if(!StringUtils.isNullOrEmpty(user.getPassword())){
-            user.setPassword(Md5Util.EncoderByMd5(user.getPassword()));
-        }
-        //删除该用户所有角色
-        userRoleMapper.delAllByUserId(user.getUserId());
-        //判断是否有角色修改
-        if(user.getRoles() != null){
-            //新增该用户角色
-            for(Long roleId : user.getRoles()){
-                UserRole userRole = new UserRole();
-                userRole.setRoleId(roleId);
-                userRole.setUserId(user.getUserId());
-                userRoleMapper.insert(userRole);
-            }
-        }
-        user.setModifyId(tokenUtil.getUserId());
-        user.setModifyTime(new Date());
-        userMapper.updateByPrimaryKeySelective(user);
-    }
-
-    /**
-     * 删除用户
-     * @param userId
-     */
-    @Transactional
-    @Override
-    public void del(String userId) {
-        //删除该用户拥有的角色
-        userRoleMapper.delAllByUserId(userId);
-        userMapper.deleteByPrimaryKey(userId);
-    }
-
-    /**
-     * 更改状态
-     * @param user
-     */
-    @Override
-    public void change(User user) {
-        //获取原对象的userId和status属性，封装到新的对象中
-        User u = new User();
-        u.setUserId(user.getUserId());
-        u.setStatus(user.getStatus());
-        u.setModifyTime(new Date());
-        u.setModifyId(tokenUtil.getUserId());
-        //只更新有数据的列
-        userMapper.updateByPrimaryKeySelective(u);
     }
 }

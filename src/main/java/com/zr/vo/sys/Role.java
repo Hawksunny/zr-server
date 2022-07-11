@@ -1,11 +1,8 @@
 package com.zr.vo.sys;
 
-import com.zr.vo.BaseVo;
-
-import java.io.Serializable;
 import java.util.Date;
 
-public class Role  extends BaseVo implements Serializable {
+public class Role {
     private Long id;
 
     private String name;

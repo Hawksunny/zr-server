@@ -1,11 +1,12 @@
 package com.zr.vo.sys;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zr.vo.BaseVo;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.regex.Pattern;
 
 public class User extends BaseVo implements Serializable {
     private String userId;
@@ -18,23 +19,15 @@ public class User extends BaseVo implements Serializable {
 
     private String createId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private String modifyId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
     private String imgUrl;
-
-    //用户拥有的角色集合(用户查询列表显示时使用)
-    private List<Role> roleList;
-
-    //新增、修改是用户拥有的角色
-    private Long[] roles;
 
     public String getUserId() {
         return userId;
@@ -106,21 +99,5 @@ public class User extends BaseVo implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl == null ? null : imgUrl.trim();
-    }
-
-    public List<Role> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
-
-    public Long[] getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Long[] roles) {
-        this.roles = roles;
     }
 }
