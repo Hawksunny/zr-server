@@ -2,6 +2,8 @@ package com.zr.mapper.sys;
 
 import com.zr.vo.sys.Role;
 
+import java.util.List;
+
 public interface RoleMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    List<Role> selectList();
 }
