@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.zr.service.lease.OrderService;
 import com.zr.util.AjaxResult;
-import com.zr.vo.lease.Order;
 import com.zr.vo.lease.OrderForOrderPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
