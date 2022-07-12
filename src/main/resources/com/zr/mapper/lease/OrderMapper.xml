@@ -29,7 +29,7 @@
     from lease_order
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from lease_order
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -220,4 +220,48 @@
       order_time = #{orderTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!-- 自定义SQL -->
+  <select id="list" resultType="com.zr.vo.lease.OrderForOrderPage">
+    SELECT
+      lease_order.id AS orderId,
+      lease_order.customer_id AS customerId,
+      lease_customer.`name` AS customerName,
+      car_car.`name` AS carName,
+      from_city.`name` AS fromCityName,
+      from_shop.`name` AS fromShopName,
+      lease_order.from_time AS fromTime,
+      to_city.`name` AS toCityName,
+      to_shop.`name` AS toShopName,
+      lease_order.to_time AS toTime,
+      lease_order.`status`,
+      lease_order.pay_time AS orderTime,
+      lease_agreement.`name` AS agreementName,
+      lease_order.nomp,
+      lease_order.psur,
+      lease_order.total
+    FROM
+      lease_order
+        LEFT JOIN lease_customer ON lease_order.customer_id = lease_customer.customer_id
+        LEFT JOIN car_car ON lease_order.car_id = car_car.id
+        LEFT JOIN shop_shop from_shop ON lease_order.from_shop_id = from_shop.id
+        LEFT JOIN shop_city from_city ON from_shop.city_id = from_city.id
+        LEFT JOIN shop_shop to_shop ON lease_order.to_shop_id = to_shop.id
+        LEFT JOIN shop_city to_city ON to_shop.city_id = to_city.id
+        LEFT JOIN lease_agreement ON lease_order.agreement_id = lease_agreement.id
+    <where>
+      <if test="orderId != null">
+        lease_order.id like '%${orderId}%'
+      </if>
+      <if test="customerId != null">
+        and lease_order.customer_id like '%${customerId}%'
+      </if>
+      <if test="customerName != null">
+        and lease_customer.`name` like '%${customerName}%'
+      </if>
+      <if test="carId != null">
+        and car_car.id = #{carId}
+      </if>
+    </where>
+  </select>
 </mapper>

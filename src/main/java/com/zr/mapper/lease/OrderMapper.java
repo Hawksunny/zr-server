@@ -1,6 +1,9 @@
 package com.zr.mapper.lease;
 
 import com.zr.vo.lease.Order;
+import com.zr.vo.lease.OrderForOrderPage;
+
+import java.util.List;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +17,6 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+    List<OrderForOrderPage> list(OrderForOrderPage order);
 }

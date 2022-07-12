@@ -25,7 +25,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         if(token != null){
             Object obj = redisUtils.get(token);
             if(obj != null){
-                redisUtils.set(token, obj, 15L, TimeUnit.MINUTES);
+                redisUtils.set(token, obj, 6L, TimeUnit.HOURS);
                 return true;
             }
         }

@@ -28,7 +28,4 @@
       </if>
     </trim>
   </insert>
-  <delete id="delAllByUserId">
-    delete  from sys_userrole where user_id = #{userId}
-  </delete>
 </mapper>

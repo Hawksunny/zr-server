@@ -55,4 +55,7 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectList" resultMap="BaseResultMap">
+    select * from shop_province
+  </select>
 </mapper>

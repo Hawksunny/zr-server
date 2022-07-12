@@ -7,7 +7,6 @@ import com.zr.util.AjaxResult;
 import com.zr.util.RedisUtils;
 import com.zr.vo.sys.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,7 +47,7 @@ public class UserController {
             //生成Token(Jwt)
             String token = UUID.randomUUID().toString();
             //把token放入redis缓存，有效时间设置为15分钟
-            redisUtils.set(token, loginUser, 15L, TimeUnit.MINUTES);
+            redisUtils.set(token, loginUser, 6L, TimeUnit.HOURS);
             Map dataMap = new HashMap();
             dataMap.put("loginUserName", loginUser.getUserName());
             dataMap.put("authUrlsList", authUrlsList);
@@ -93,39 +92,6 @@ public class UserController {
     public String add(@RequestBody  User user){
         userService.add(user);
         return JSON.toJSONString(AjaxResult.success("新增成功"));
-    }
-
-    /**
-     * 编辑用户
-     * @param user
-     * @return
-     */
-    @RequestMapping("/edit")
-    public String edit(@RequestBody  User user){
-        userService.edit(user);
-        return JSON.toJSONString(AjaxResult.success("编辑成功"));
-    }
-
-    /**
-     * 删除用户
-     * @param userId
-     * @return
-     */
-    @RequestMapping("/del/{userId}")
-    public String del(@PathVariable("userId") String userId){
-        userService.del(userId);
-        return JSON.toJSONString(AjaxResult.success("删除成功"));
-    }
-
-    /**
-     * 更改用户状态
-     * @param user
-     * @return
-     */
-    @RequestMapping("/change")
-    public String change(@RequestBody  User user) {
-        userService.change(user);
-        return JSON.toJSONString(AjaxResult.success("操作成功"));
     }
 
     /**

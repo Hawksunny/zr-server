@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
+
+    // 原有字段
     private Long id;
 
     private String customerId;
