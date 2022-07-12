@@ -1,6 +1,7 @@
 package com.zr.mapper.lease;
 
 import com.zr.vo.lease.Order;
+import com.zr.vo.lease.OrderForOrderPage;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
-    List<Order> list(Order order);
+    List<OrderForOrderPage> list(OrderForOrderPage order);
 }

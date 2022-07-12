@@ -2,7 +2,7 @@ package com.zr.service.lease.impl;
 
 import com.zr.mapper.lease.OrderMapper;
 import com.zr.service.lease.OrderService;
-import com.zr.vo.lease.Order;
+import com.zr.vo.lease.OrderForOrderPage;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +14,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<Order> list(Order order) {
+    public List<OrderForOrderPage> list(OrderForOrderPage order) {
         return orderMapper.list(order);
     }
 }

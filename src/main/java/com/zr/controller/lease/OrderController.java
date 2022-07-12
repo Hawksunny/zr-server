@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zr.service.lease.OrderService;
 import com.zr.util.AjaxResult;
 import com.zr.vo.lease.Order;
+import com.zr.vo.lease.OrderForOrderPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +29,9 @@ public class OrderController {
      * @return
      */
     @RequestMapping("/list")
-    public String list(@RequestBody Order order) {
-        List<Order> orderList = orderService.list(order);
-        PageInfo<Order> pageInfo = new PageInfo<>(orderList);
+    public String list(@RequestBody OrderForOrderPage order) {
+        List<OrderForOrderPage> orderList = orderService.list(order);
+        PageInfo<OrderForOrderPage> pageInfo = new PageInfo<>(orderList);
 
         return JSON.toJSONString(AjaxResult.success("查询成功", pageInfo));
     }
