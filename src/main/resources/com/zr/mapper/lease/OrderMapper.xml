@@ -259,8 +259,8 @@
       <if test="customerName != null">
         and lease_customer.`name` like '%${customerName}%'
       </if>
-      <if test="carName != null">
-        and car_car.`name` = #{carName}
+      <if test="carId != null">
+        and car_car.id = #{carId}
       </if>
     </where>
   </select>
