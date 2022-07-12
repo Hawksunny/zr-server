@@ -2,6 +2,8 @@ package com.zr.mapper.car;
 
 import com.zr.vo.car.Car;
 
+import java.util.List;
+
 public interface CarMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +16,6 @@ public interface CarMapper {
     int updateByPrimaryKeySelective(Car record);
 
     int updateByPrimaryKey(Car record);
+
+    List<Car> list();
 }
