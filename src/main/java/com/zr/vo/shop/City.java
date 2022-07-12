@@ -15,11 +15,13 @@ public class City extends BaseVo {
 
     private String createId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private String modifyId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 

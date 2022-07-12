@@ -17,5 +17,5 @@ public interface CarMapper {
 
     int updateByPrimaryKey(Car record);
 
-    List<Car> list();
+    List<Car> list(Car car);
 }
