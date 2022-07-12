@@ -8,4 +8,8 @@ public interface CityService {
     List<City> list(City city);
 
     void add(City city);
+
+    void edit(City city);
+
+    void del(Long id);
 }
