@@ -247,5 +247,13 @@
 
   <select id="list" resultMap="BaseResultMap">
     select * from car_car
+    <where>
+      <if test="id != null">
+        id like '%${id}%'
+      </if>
+      <if test="name != null">
+        and name like '%${name}%'
+      </if>
+    </where>
   </select>
 </mapper>

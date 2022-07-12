@@ -32,7 +32,6 @@ public class CityServiceImpl implements CityService {
     /**
      * 查询城市
      * @param city
-     * @return
      */
     @Override
     public List<City> list(City city) {
