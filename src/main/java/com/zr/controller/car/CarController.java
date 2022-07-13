@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.zr.service.car.CarService;
 import com.zr.util.AjaxResult;
 import com.zr.vo.car.Car;
-import com.zr.vo.shop.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +20,6 @@ public class CarController {
     private CarService carService;
 
     /**
-     * 作者：黄成翰
      * 功能：查询车辆信息
      * @return String
      * @param car
