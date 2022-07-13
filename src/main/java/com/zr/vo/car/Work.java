@@ -32,7 +32,8 @@ public class Work extends BaseVo {
     private String outUserId;
 
     private String inUserId;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date outFitTime;
 
     private String outFitUserId;
