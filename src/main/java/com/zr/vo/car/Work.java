@@ -1,23 +1,39 @@
 package com.zr.vo.car;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zr.vo.BaseVo;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Work {
+public class Work extends BaseVo {
+
+    //自定义字段
+    private String customerId;
+
+    private String customerName;
+
+    //原有字段
     private Long id;
 
     private Long orderId;
 
     private String carNo;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date outTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date inTime;
 
     private String outUserId;
 
     private String inUserId;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date outFitTime;
 
     private String outFitUserId;
@@ -122,5 +138,21 @@ public class Work {
 
     public void setMark(String mark) {
         this.mark = mark == null ? null : mark.trim();
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }
