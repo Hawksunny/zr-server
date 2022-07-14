@@ -1,8 +1,12 @@
 package com.zr.vo.lease;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.zr.vo.BaseVo;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
-public class Agreement {
+public class Agreement extends BaseVo {
     private Long id;
 
     private String name;
@@ -11,10 +15,14 @@ public class Agreement {
 
     private String createId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     private String modifyId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
     private String text;

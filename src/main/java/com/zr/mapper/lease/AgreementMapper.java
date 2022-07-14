@@ -2,6 +2,8 @@ package com.zr.mapper.lease;
 
 import com.zr.vo.lease.Agreement;
 
+import java.util.List;
+
 public interface AgreementMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -16,4 +18,6 @@ public interface AgreementMapper {
     int updateByPrimaryKeyWithBLOBs(Agreement record);
 
     int updateByPrimaryKey(Agreement record);
+
+    List<Agreement> list(Agreement agreement);
 }
