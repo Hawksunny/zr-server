@@ -1,7 +1,7 @@
 package com.zr.service.sys.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.mysql.jdbc.StringUtils;
+import com.mysql.cj.util.StringUtils;
 import com.zr.mapper.sys.UserMapper;
 import com.zr.service.sys.UserService;
 import com.zr.util.Md5Util;
