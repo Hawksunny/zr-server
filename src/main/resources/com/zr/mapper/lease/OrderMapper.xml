@@ -264,4 +264,35 @@
       </if>
     </where>
   </select>
+  <resultMap id="CarCountResultMap" type="com.zr.vo.table.table">
+    <id column="name" property="carname"/>
+    <result column="car_count" property="num"/>
+  </resultMap>
+  <resultMap id="SimpleOrderMap" type="com.zr.vo.table.SimpleOrder">
+    <id column="order_time" property="orderTime"/>
+    <result column="total" property="total"/>
+  </resultMap>
+  <select id="countCarNum" resultMap="CarCountResultMap">
+    SELECT car_car.name,
+           count(*) as car_count
+    from car_car
+           INNER JOIN lease_order
+    WHERE
+      car_car.id=lease_order.car_id
+    GROUP BY name
+  </select>
+
+  <select id="selectTimeByCarName" resultType="java.util.Date">
+    select lease_order.order_time FROM
+      lease_order
+        INNER JOIN car_car
+    WHERE car_car.id=lease_order.car_id
+      AND car_car.`name` LIKE '%${carName}%'
+  </select>
+
+  <select id="listOrder" resultMap="SimpleOrderMap">
+    select order_time,total
+    from lease_order
+    ORDER BY order_time
+  </select>
 </mapper>
