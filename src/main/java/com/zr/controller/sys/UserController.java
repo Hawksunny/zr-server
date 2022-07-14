@@ -51,6 +51,7 @@ public class UserController {
             Map dataMap = new HashMap();
             dataMap.put("loginUserName", loginUser.getUserName());
             dataMap.put("authUrlsList", authUrlsList);
+            dataMap.put("loginUserId", loginUser.getUserId());
             dataMap.put("base64", userService.loadImgByImgUrl(loginUser.getImgUrl()));
             ajaxResult = new AjaxResult(true, token, dataMap);
         }else{

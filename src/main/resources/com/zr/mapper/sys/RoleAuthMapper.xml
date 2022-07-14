@@ -28,4 +28,8 @@
       </if>
     </trim>
   </insert>
+
+  <delete id="del">
+    delete from sys_roleauth where role_id = #{id}
+  </delete>
 </mapper>

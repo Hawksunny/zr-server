@@ -2,17 +2,20 @@ package com.zr.vo.lease;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zr.vo.BaseVo;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class OrderForOrderPage {
+public class OrderForOrderPage extends BaseVo {
 
     private Long orderId;
 
     private String customerId;
 
     private String customerName;
+
+    private Long carId;
 
     private String carName;
 
@@ -76,6 +79,14 @@ public class OrderForOrderPage {
 
     public void setCarName(String carName) {
         this.carName = carName;
+    }
+
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
     public String getFromCityName() {

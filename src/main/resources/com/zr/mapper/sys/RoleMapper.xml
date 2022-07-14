@@ -117,4 +117,23 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="listByUserId" resultMap="BaseResultMap">
+    SELECT
+      sys_role.*
+    FROM
+      sys_role
+        LEFT JOIN sys_userrole ON sys_role.id = sys_userrole.role_id
+    WHERE
+      sys_userrole.user_id = #{userId}
+  </select>
+  <select id="list" resultMap="BaseResultMap">
+    select * from sys_role
+    <where>
+      <if test="name != null">
+        name like '%${name}%'
+      </if>
+    </where>
+  </select>
+
 </mapper>

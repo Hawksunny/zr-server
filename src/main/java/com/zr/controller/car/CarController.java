@@ -1,10 +1,10 @@
-package com.zr.controller.shop;
+package com.zr.controller.car;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
-import com.zr.service.shop.CityService;
+import com.zr.service.car.CarService;
 import com.zr.util.AjaxResult;
-import com.zr.vo.shop.City;
+import com.zr.vo.car.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,60 +13,52 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * 用户操作类
- */
 @RestController
-@RequestMapping("/shop/city")
-public class CityController {
-
+@RequestMapping("/car/car")
+public class CarController {
     @Autowired
-    private CityService cityService;
+    private CarService carService;
 
     /**
-     * 查询城市列表
-     * @param city
-     * @return
+     * 功能：查询车辆信息
+     * @return String
+     * @param car
      */
     @RequestMapping("/list")
-    public String list(@RequestBody City city){
-        //查询城市列表
-        List<City> cityList = cityService.list(city);
+    public String list(@RequestBody Car car) {
+        //查询车辆列表
+        List<Car> carList = carService.list(car);
         //封装到分页对象中
-        PageInfo<City> pageInfo = new PageInfo<>(cityList);
-        return JSON.toJSONString(AjaxResult.success("查询成功", pageInfo));
+        PageInfo<Car> pageInfo = new PageInfo<>(carList);
+        return JSON.toJSONString(AjaxResult.success("查询成功", carList));
     }
 
-    /**
-     * 添加城市
-     * @param city
-     * @return
-     */
     @RequestMapping("/add")
-    public String add(@RequestBody City city){
-        cityService.add(city);
+    public String add(@RequestBody Car car){
+        carService.add(car);
         return JSON.toJSONString(AjaxResult.success("新增成功"));
     }
 
     /**
-     * 编辑城市
-     * @param city
+     * 编辑车辆
+     * @param car
      * @return
      */
     @RequestMapping("/edit")
-    public String edit(@RequestBody City city){
-        cityService.edit(city);
+    public String edit(@RequestBody Car car){
+        carService.edit(car);
         return JSON.toJSONString(AjaxResult.success("编辑成功"));
     }
 
     /**
-     * 删除城市
-     * @param city
+     * 删除车辆
+     * @param
      * @return
      */
     @RequestMapping("/del/{id}")
     public String del(@PathVariable("id") Long id){
-        cityService.del(id);
+        carService.del(id);
         return JSON.toJSONString(AjaxResult.success("删除成功"));
     }
+
 }

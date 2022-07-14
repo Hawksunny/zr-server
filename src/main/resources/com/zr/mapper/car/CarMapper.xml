@@ -31,7 +31,7 @@
     from car_car
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from car_car
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -244,4 +244,16 @@
       img_url = #{imgUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="list" resultMap="BaseResultMap">
+    select * from car_car
+    <where>
+      <if test="id != null">
+        id like '%${id}%'
+      </if>
+      <if test="name != null">
+        and name like '%${name}%'
+      </if>
+    </where>
+  </select>
 </mapper>

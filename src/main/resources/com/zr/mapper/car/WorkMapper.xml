@@ -25,7 +25,7 @@
     from car_work
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from car_work
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -174,4 +174,25 @@
       mark = #{mark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+<!--自定义SQL-->
+  <select id="list" resultMap="BaseResultMap">
+    SELECT
+      car_work.*,
+      lease_order.customer_id AS customerId,
+      lease_customer.`name` AS customerName
+    FROM
+      car_work
+        LEFT JOIN lease_order ON car_work.order_id = lease_order.id
+        LEFT JOIN lease_customer ON lease_order.customer_id = lease_customer.customer_id
+    <where>
+      <if test="orderId != null">
+        and car_work.order_id like '%${orderId}%'
+      </if>
+      <if test="customerId != null">
+        and lease_order.customer_id like '%${customerId}%'
+      </if>
+    </where>
+    ORDER BY car_work.id
+  </select>
 </mapper>

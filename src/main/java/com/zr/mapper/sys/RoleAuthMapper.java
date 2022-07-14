@@ -6,4 +6,6 @@ public interface RoleAuthMapper {
     int insert(RoleAuth record);
 
     int insertSelective(RoleAuth record);
+
+    void del(Integer id);
 }
